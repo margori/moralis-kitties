@@ -29,6 +29,12 @@ function mouthColor(color, code) {
   $('#dnamouth').html(code); //This updates the body color part of the DNA that is displayed below the cat
 }
 
+function eyesColor(color, code) {
+  $('.pupil-right,.pupil-left').css('background', '#' + color); //This changes the color of the cat
+  $('#eyescore').html('code: ' + code); //This updates text of the badge next to the slider
+  $('#dnaeyes').html(code); //This updates the body color part of the DNA that is displayed below the cat
+}
+
 //###################################################
 //Functions below will be used later on in the project
 //###################################################
