@@ -54,6 +54,8 @@ function renderCat(dna) {
   $('#mouthcolor').val(dna.mouthColor);
   eyesColor(colors[dna.eyesColor], dna.eyesColor);
   $('#eyesColor').val(dna.eyesColor);
+  earsColor(colors[dna.earsColor], dna.earsColor);
+  $('#earsColor').val(dna.earsColor);
 }
 
 // Changing cat colors
@@ -71,4 +73,9 @@ $('#eyesColor').change(() => {
   var colorVal = $('#eyesColor').val();
   var colorKey = ('00' + colorVal).slice(-2);
   eyesColor(colors[colorKey], colorKey);
+});
+$('#earsColor').change(() => {
+  var colorVal = $('#earsColor').val();
+  var colorKey = ('00' + colorVal).slice(-2);
+  earsColor(colors[colorKey], colorKey);
 });
