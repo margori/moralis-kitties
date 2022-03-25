@@ -42,12 +42,22 @@ function earsColor(color, code) {
 //###################################################
 //Functions below will be used later on in the project
 //###################################################
-function eyeVariation(num) {
+function eyesShape(num) {
   $('#dnashape').html(num);
   switch (num) {
-    case 1:
+    case '0':
       normalEyes();
-      $('#eyeName').html('Basic');
+      $('#eyesName').html('Basic');
+      break;
+    case '1':
+      normalEyes();
+      chillEyes();
+      $('#eyesName').html('Chill');
+      break;
+    case '2':
+      normalEyes();
+      upEyes();
+      $('#eyesName').html('Up');
       break;
   }
 }
@@ -64,6 +74,14 @@ function decorationVariation(num) {
 
 async function normalEyes() {
   await $('.cat__eye').find('span').css('border', 'none');
+}
+
+async function chillEyes() {
+  await $('.cat__eye').find('span').css('border-top', '15px solid');
+}
+
+async function upEyes() {
+  await $('.cat__eye').find('span').css('border-bottom', '10px solid');
 }
 
 async function normaldecoration() {
