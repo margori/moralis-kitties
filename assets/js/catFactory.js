@@ -34,10 +34,22 @@ function eyesColor(color, code) {
 
 function earsColor(color, code) {
   $(
-    '.cat__ear--left,.cat__ear--right,.cat__paw-left,.cat__paw-left_inner,.cat__paw-right,.cat__paw-right_inner'
+    '.cat__paw-left,.cat__paw-left_inner,.cat__paw-right,.cat__paw-right_inner,#leftEar,#rightEar'
   ).css('background', '#' + color); //This changes the color of the cat
   $('#earscore').html('code: ' + code); //This updates text of the badge next to the slider
   $('#dnaears').html(code); //This updates the body color part of the DNA that is displayed below the cat
+}
+
+function decorationMidcolor(color, code) {
+  $('#midDot').css('background', '#' + color); //This changes the color of the cat
+  $('#decorationMidcolorName').html('code: ' + code); //This updates text of the badge next to the slider
+  $('#dnadecorationMid').html(code); //This updates the body color part of the DNA that is displayed below the cat
+}
+
+function decorationSidescolor(color, code) {
+  $('#leftDot,#rightDot').css('background', '#' + color); //This changes the color of the cat
+  $('#decorationSidescolorName').html('code: ' + code); //This updates text of the badge next to the slider
+  $('#dnadecorationSides').html(code); //This updates the body color part of the DNA that is displayed below the cat
 }
 //###################################################
 //Functions below will be used later on in the project
@@ -62,12 +74,23 @@ function eyesShape(num) {
   }
 }
 
-function decorationVariation(num) {
+function decorationPattern(num) {
   $('#dnadecoration').html(num);
+  console.log(num);
   switch (num) {
-    case 1:
-      $('#decorationName').html('Basic');
-      normaldecoration();
+    case '0':
+      $('#decorationPatternName').html('Basic');
+      normalDecorationPatern();
+      break;
+    case '1':
+      $('#decorationPatternName').html('Tilted');
+      normalDecorationPatern();
+      tiltedDecorationPatern();
+      break;
+    case '2':
+      $('#decorationPatternName').html('Longer');
+      normalDecorationPatern();
+      longerDecorationPatern();
       break;
   }
 }
@@ -84,7 +107,7 @@ async function upEyes() {
   await $('.cat__eye').find('span').css('border-bottom', '10px solid');
 }
 
-async function normaldecoration() {
+async function normalDecorationPatern() {
   //Remove all style from other decorations
   //In this way we can also use normalDecoration() to reset the decoration style
   $('.cat__head-dots').css({
@@ -94,18 +117,43 @@ async function normaldecoration() {
     top: '1px',
     'border-radius': '0 0 50% 50%',
   });
-  $('.cat__head-dots_first').css({
+  $('.cat__head-dots_left').css({
     transform: 'rotate(0deg)',
     height: '35px',
     width: '14px',
     top: '1px',
     'border-radius': '50% 0 50% 50%',
   });
-  $('.cat__head-dots_second').css({
+  $('.cat__head-dots_right').css({
     transform: 'rotate(0deg)',
     height: '35px',
     width: '14px',
     top: '1px',
     'border-radius': '0 50% 50% 50%',
+  });
+}
+
+async function tiltedDecorationPatern() {
+  //Remove all style from other decorations
+  //In this way we can also use normalDecoration() to reset the decoration style
+  $('.cat__head-dots').css({
+    transform: 'rotate(15deg) scaleY(1.1)',
+    'border-radius': '20% 0 50% 50%',
+  });
+  $('.cat__head-dots_left').css({
+    top: '5px',
+  });
+  $('.cat__head-dots_right').css({
+    top: '-2px',
+    'border-radius': '10% 50% 50% 50%',
+  });
+}
+
+async function longerDecorationPatern() {
+  //Remove all style from other decorations
+  //In this way we can also use normalDecoration() to reset the decoration style
+  $('.cat__head-dots').css({
+    transform: 'rotate(0deg) scaleY(1.5)',
+    top: '13px',
   });
 }
