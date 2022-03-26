@@ -76,7 +76,6 @@ function eyesShape(num) {
 
 function decorationPattern(num) {
   $('#dnadecoration').html(num);
-  console.log(num);
   switch (num) {
     case '0':
       $('#decorationPatternName').html('Basic');
@@ -156,4 +155,29 @@ async function longerDecorationPatern() {
     transform: 'rotate(0deg) scaleY(1.5)',
     top: '13px',
   });
+}
+
+function animation(num) {
+  $('#head').removeClass('tiltHead');
+  $('#head').removeClass('leftRightHead');
+  $('#head').removeClass('upDownHead');
+
+  switch (num) {
+    case '0':
+      $('#animationName').html('Still');
+      break;
+    case '1':
+      console.log(num);
+      $('#animationName').html('Tilt');
+      $('#head').addClass('tiltHead');
+      break;
+    case '2':
+      $('#animationName').html('Left Right');
+      $('#head').addClass('leftRightHead');
+      break;
+    case '3':
+      $('#animationName').html('Up Down');
+      $('#head').addClass('upDownHead');
+      break;
+  }
 }

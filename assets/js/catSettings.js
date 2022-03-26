@@ -7,10 +7,10 @@ var defaultDNA = {
   earsColor: 10,
   //Cattributes
   eyesShape: '0',
-  decorationPattern: '1',
+  decorationPattern: '0',
   decorationMidcolor: 13,
   decorationSidescolor: 13,
-  animation: '01',
+  animation: '0',
   lastNum: '01',
 };
 
@@ -67,6 +67,8 @@ function renderCat(dna) {
     dna.decorationSidescolor
   );
   $('#decorationSidescolor').val(dna.decorationSidescolor);
+  animation(dna.animation);
+  $('#animation').val(dna.animation);
 }
 
 // Changing cat colors
@@ -107,4 +109,8 @@ $('#decorationSidescolor').change(() => {
   var colorVal = $('#decorationSidescolor').val();
   var colorKey = ('00' + colorVal).slice(-2);
   decorationSidescolor(colors[colorKey], colorKey);
+});
+$('#animation').change(() => {
+  var shapeVal = $('#animation').val();
+  animation(shapeVal);
 });
