@@ -14,8 +14,7 @@ var defaultDNA = {
   lastNum: '01',
 };
 
-// when page load
-$(document).ready(function () {
+function setDna(dna) {
   $('#dnahead').html(defaultDNA.headColor);
   $('#dnamouth').html(defaultDNA.mouthColor);
   $('#dnaeyes').html(defaultDNA.eyesColor);
@@ -28,7 +27,12 @@ $(document).ready(function () {
   $('#dnaanimation').html(defaultDNA.animation);
   $('#dnaspecial').html(defaultDNA.lastNum);
 
-  renderCat(defaultDNA);
+  renderCat(dna);
+}
+
+// when page load
+$(document).ready(function () {
+  setDna(defaultDNA);
 });
 
 function getDna() {

@@ -167,7 +167,6 @@ function animation(num) {
       $('#animationName').html('Still');
       break;
     case '1':
-      console.log(num);
       $('#animationName').html('Tilt');
       $('#head').addClass('tiltHead');
       break;
