@@ -20,6 +20,19 @@ $('#random-btn').click(() => {
 $('#default-btn').click(() => {
   setDna(defaultDNA);
 });
+
 $('#create-btn').click(() => {
-  console.log('create clicked');
+  const newDna = getDna();
+  console.log('newDna', newDna);
+
+  instance.methods
+    .createKittyGen0(newDna)
+    .send({})
+    .then((result) => {
+      console.log('Kitty created successfully');
+      console.log('txhash', result.transactionHash);
+    })
+    .catch((error) => {
+      console.error(error);
+    });
 });

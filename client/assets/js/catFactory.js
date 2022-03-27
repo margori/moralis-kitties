@@ -158,6 +158,7 @@ async function longerDecorationPatern() {
 }
 
 function animation(num) {
+  $('#dnaanimation').html(num);
   $('#head').removeClass('tiltHead');
   $('#head').removeClass('leftRightHead');
   $('#head').removeClass('upDownHead');
