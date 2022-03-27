@@ -1,7 +1,17 @@
 const rand = (min, max) =>
   Math.round(Math.random() * (max - min + 1) + min).toString();
 
+const showMessage = (message) => {
+  if (message) {
+    $('#btn-message').show();
+    $('#btn-message-content').html(message);
+  } else {
+    $('#btn-message').hide();
+  }
+};
+
 $('#random-btn').click(() => {
+  showMessage('');
   var newDNA = {
     headcolor: rand(0, 99),
     mouthColor: rand(0, 99),
@@ -18,10 +28,12 @@ $('#random-btn').click(() => {
   setDna(newDNA);
 });
 $('#default-btn').click(() => {
+  showMessage('');
   setDna(defaultDNA);
 });
 
 $('#create-btn').click(() => {
+  showMessage('');
   const newDna = getDna();
   console.log('newDna', newDna);
 
@@ -29,7 +41,7 @@ $('#create-btn').click(() => {
     .createKittyGen0(newDna)
     .send({})
     .then((result) => {
-      console.log('Kitty created successfully');
+      showMessage('Kitty created successfully');
       console.log('txhash', result.transactionHash);
     })
     .catch((error) => {

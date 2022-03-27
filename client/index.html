@@ -261,10 +261,26 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-lg-11 cattributes m-2 light-b-shadow">
+        <div id="button-row" class="col-lg-11 cattributes m-2 light-b-shadow">
           <buton class="btn btn-primary" id="random-btn">Random cat</buton>
           <buton class="btn btn-secondary" id="default-btn">Default cat</buton>
           <buton class="btn btn-info" id="create-btn">Create cat</buton>
+          <div
+            id="btn-message"
+            class="alert alert-success alert-dismissible"
+            role="alert"
+            style="margin-top: 10px; display: none"
+          >
+            <span id="btn-message-content"
+              ></span
+            >
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="alert"
+              aria-label="Close"
+            ></button>
+          </div>
         </div>
       </div>
     </div>
