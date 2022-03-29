@@ -3,10 +3,11 @@ pragma solidity >=0.4.22 <0.9.0;
 
 import "./IERC721.sol";
 import "./IERC721Receiver.sol";
+import "./ERC165.sol";
 import "./Ownable.sol";
 import "./Address.sol";
 
-contract SchoolKittiesContract is IERC721, Ownable {
+contract SchoolKittiesContract is IERC721, ERC165, Ownable {
     using Address for address;
 
     string private _name;
@@ -166,6 +167,18 @@ contract SchoolKittiesContract is IERC721, Ownable {
     }
 
     // externals
+
+    function supportsInterface(bytes4 interfaceId)
+        public
+        view
+        virtual
+        override(ERC165)
+        returns (bool)
+    {
+        return
+            interfaceId == type(IERC721).interfaceId ||
+            super.supportsInterface(interfaceId);
+    }
 
     function balanceOf(address owner) external view returns (uint256 balance) {
         balance = ownershipCount[owner];
