@@ -41,7 +41,6 @@ $('#create-btn').click(() => {
     .createKittyGen0(newDna)
     .send({})
     .then((result) => {
-      showMessage('Kitty created successfully');
       console.log('txhash', result.transactionHash);
     })
     .catch((error) => {
