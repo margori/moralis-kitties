@@ -239,12 +239,31 @@ contract SchoolKittiesContract is IERC721, ERC165, Ownable {
 
     function _mixDna(uint256 dadDna, uint256 momDna)
         private
-        pure
+        view
         returns (uint256)
     {
-        uint256 dadPart = dadDna / SPLIT;
-        uint256 momPart = momDna % SPLIT;
-        return dadPart * SPLIT + momPart;
+        uint256[8] memory dnaParts;
+        uint8 random = uint8(block.timestamp % 255);
+
+        uint256 index = 7;
+        for (uint256 i = 1; i <= 128; i *= 2) {
+            if (random & i == 0) {
+                dnaParts[index] = uint8(dadDna % 100);
+            } else {
+                dnaParts[index] = uint8(momDna % 100);
+            }
+
+            dadDna /= 100;
+            momDna /= 100;
+
+            index--;
+        }
+
+        uint256 newDna = 0;
+        for (uint256 i = 0; i < 8; i++) {
+            newDna = newDna * 100 + dnaParts[i];
+        }
+        return newDna;
     }
 
     function transfer(address to, uint256 tokenId)
