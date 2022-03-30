@@ -216,6 +216,37 @@ contract SchoolKittiesContract is IERC721, ERC165, Ownable {
         _createKitty(0, 0, 0, dna, msg.sender);
     }
 
+    function breed(uint256 dadId, uint256 momId) public returns (uint256) {
+        require(_owns(msg.sender, dadId));
+        require(_owns(msg.sender, momId));
+
+        Kitty storage dad = kitties[dadId];
+        Kitty storage mom = kitties[momId];
+
+        uint256 dadDna = uint256(dad.dna);
+        uint256 momDna = uint256(mom.dna);
+        uint256 kittenDna = _mixDna(dadDna, momDna);
+
+        uint256 kittenGeneration = (
+            dad.generation > mom.generation ? dad.generation : mom.generation
+        ) + 1;
+
+        return
+            _createKitty(momId, dadId, kittenGeneration, kittenDna, msg.sender);
+    }
+
+    uint256 constant SPLIT = 100000000;
+
+    function _mixDna(uint256 dadDna, uint256 momDna)
+        private
+        pure
+        returns (uint256)
+    {
+        uint256 dadPart = dadDna / SPLIT;
+        uint256 momPart = momDna % SPLIT;
+        return dadPart * SPLIT + momPart;
+    }
+
     function transfer(address to, uint256 tokenId)
         external
         notAddressZero(to)
